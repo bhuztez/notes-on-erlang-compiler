@@ -136,43 +136,21 @@ select different passes for different filename extension
 +----------+--------------------------+--------------------------------------+----------------------+---------------------+---------------------+-------------------------+
 
 
-
 HiPE
 ====
 
-disasm
-------
+To get Icode of Erlang code
 
-get_beam_icode
---------------
+.. code::
 
-:code:`hipe_beam_to_icode:module/2`
-
-
-get_core_icode
---------------
-
-:code:`cerl_to_icode:module:module/2`
-
-
-icode_multret
--------------
-
-:code:`hipe_icode_mulret:mult_ret/4`
-
-
-callgraph
----------
-
-:code:`hipe_icode_callgraph:construct/1`
-
-
-:code:`hipe_main:compile_icode/4`
+    {ok,_,Bin}=compile:file(FileName,[binary]).
+    {beam_file,_,_,_,_,BeamCode}=beam_disasm:file(Bin).
+    [{{M,F,A},Icode}|_]=hipe_beam_to_icode:module(BeamCode,[]).
 
 
 Icode
-=====
+-----
 
 
 RTL
-===
+---
